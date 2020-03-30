@@ -4,10 +4,7 @@ script:
   - go test -race -v ./...
 
 go:
-  - 1.5
-  - 1.6
-  - 1.7
-  - 1.8
+  - 1.13
   - tip
 
 matrix:
@@ -15,5 +12,5 @@ matrix:
     - go: tip
 
 install:
-  - go get gopkg.in/fsnotify/fsnotify.v1
+  - go get github.com/fsnotify/fsnotify
   - go get gopkg.in/tomb.v1

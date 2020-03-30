@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/hpcloud/tail"
+	"github.com/iCell/tail"
 )
 
 func args2config() (tail.Config, int64) {
@@ -30,10 +30,10 @@ func args2config() (tail.Config, int64) {
 
 func main() {
 	config, n := args2config()
-	if flag.NFlag() < 1 {
-		fmt.Println("need one or more files as arguments")
-		os.Exit(1)
-	}
+	// if flag.NFlag() < 1 {
+	// 	fmt.Println("need one or more files as arguments")
+	// 	os.Exit(1)
+	// }
 
 	if n != 0 {
 		config.Location = &tail.SeekInfo{-n, os.SEEK_END}

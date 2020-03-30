@@ -14,8 +14,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/hpcloud/tail/ratelimiter"
-	"github.com/hpcloud/tail/watch"
+	"github.com/iCell/tail/ratelimiter"
+	"github.com/iCell/tail/watch"
 )
 
 func init() {
@@ -134,6 +134,7 @@ func TestOver4096ByteLine(t *testing.T) {
 	tailTest.RemoveFile("test.txt")
 	tailTest.Cleanup(tail, true)
 }
+
 func TestOver4096ByteLineWithSetMaxLineSize(t *testing.T) {
 	tailTest := NewTailTest("Over4096ByteLineMaxLineSize", t)
 	testString := strings.Repeat("a", 4097)
@@ -210,7 +211,6 @@ func TestLocationMiddle(t *testing.T) {
 
 // The use of polling file watcher could affect file rotation
 // (detected via renames), so test these explicitly.
-
 func TestReOpenInotify(t *testing.T) {
 	reOpen(t, false)
 }

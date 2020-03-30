@@ -15,9 +15,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hpcloud/tail/ratelimiter"
-	"github.com/hpcloud/tail/util"
-	"github.com/hpcloud/tail/watch"
+	"github.com/iCell/tail/ratelimiter"
+	"github.com/iCell/tail/util"
+	"github.com/iCell/tail/watch"
 	"gopkg.in/tomb.v1"
 )
 
@@ -124,7 +124,7 @@ func TailFile(filename string, config Config) (*Tail, error) {
 
 	if t.MustExist {
 		var err error
-		t.file, err = OpenFile(t.Filename)
+		t.file, err = os.Open(t.Filename)
 		if err != nil {
 			return nil, err
 		}
@@ -188,7 +188,7 @@ func (tail *Tail) reopen() error {
 	tail.closeFile()
 	for {
 		var err error
-		tail.file, err = OpenFile(tail.Filename)
+		tail.file, err = os.Open(tail.Filename)
 		if err != nil {
 			if os.IsNotExist(err) {
 				tail.Logger.Printf("Waiting for %s to appear...", tail.Filename)
